@@ -14,11 +14,12 @@ var start = function(route, handle){
 		var pathname = url.parse(request.url).pathname;
 
 		//call the route method that is pass as depency injection
-		route(handle, pathname);
+		//and returned content stored in the content variable
+		var content = route(handle, pathname);
 
 		//prepare the response of the request
 		response.writeHead(200, {'Content-Type': 'text/plain'});
-		response.write('Hello World');
+		response.write(content);
 		response.end();
 	}).listen(8888);
 
